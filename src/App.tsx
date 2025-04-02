@@ -4,46 +4,6 @@ import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import ParticleBackground from './components/ParticleBackground';
 
 // Pages
-const About = () => (
-  <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-4xl mx-auto mt-20">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
-        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-          About Me
-        </span>
-      </h2>
-      <div className="bg-black/30 backdrop-blur-sm rounded-lg p-6 sm:p-8 text-white">
-        <p className="text-gray-300 mb-6">
-          I'm a passionate Full Stack Developer with over 5 years of experience in building web applications.
-          I specialize in React, Node.js, and modern web technologies.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-red-400">Skills</h3>
-            <div className="space-y-2">
-              {['React', 'Node.js', 'TypeScript', 'Python', 'AWS'].map(skill => (
-                <div key={skill} className="bg-red-500/20 backdrop-blur-sm rounded-full px-4 py-2">
-                  {skill}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="text-xl font-semibold mb-4 text-red-400">Education</h3>
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium">Bachelor in Computer Science</h4>
-                <p className="text-gray-400">University of Technology</p>
-                <p className="text-sm text-gray-500">2015 - 2019</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
 const Experience = () => (
   <div className="min-h-screen bg-transparent p-8">
     <div className="max-w-4xl mx-auto mt-20">
@@ -188,86 +148,65 @@ const Skills = () => (
 
 const Education = () => (
   <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-6xl mx-auto mt-20">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+    <div className="max-w-7xl mx-auto mt-20">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
           Education
         </span>
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {[
           {
             degree: "Bachelor of Technology",
             field: "Computer Science and Engineering",
-            school: "Vellore Institute of Technology, Bhopal",
-            period: "2020 - 2024",
+            school: "Kalinga Institute of Industrial Technology, Bhubaneswar",
+            period: "2022 - 2026",
             achievements: [
-              "CGPA: 8.71/10",
-              "Member of Computer Science Society",
-              "Participated in various hackathons and coding competitions"
-            ]
+              ""
+            ],
+            image: "/kiit.png"
           },
           {
-            degree: "Higher Secondary (12th)",
-            field: "Science with Computer Science",
-            school: "Kendriya Vidyalaya No.1, Bhopal",
-            period: "2019 - 2020",
+            degree: "Bachelor of Technology",
+            field: "Minor in Data Science ",
+            school: "Indian Institute of Technology, Guwahati",
+            period: "2024 - 2026",
             achievements: [
-              "Percentage: 89.6%",
-              "School Head Boy",
-              "Active participant in cultural activities"
-            ]
+              ""
+            ],
+            image: "/iitg.png"
           }
         ].map((edu, index) => (
           <div 
             key={index} 
-            className={`bg-black/30 backdrop-blur-sm rounded-lg p-6 ${index === 1 ? 'md:text-right' : ''}`}
+            className={`bg-black/30 backdrop-blur-sm rounded-lg p-8 ${index === 1 ? 'md:text-right' : ''}`}
           >
-            <h3 className="text-xl font-semibold text-red-400">{edu.degree}</h3>
-            <p className="text-lg text-gray-300">{edu.field}</p>
-            <p className="text-gray-400">{edu.school}</p>
-            <p className="text-sm text-gray-500 mb-4">{edu.period}</p>
-            <ul className={`space-y-2 ${index === 1 ? 'list-none' : 'list-disc list-inside'}`}>
+            {/* Image with animation */}
+            <div className={`mb-8 group relative ${index === 1 ? 'md:ml-auto' : ''}`}>
+              <div className={`w-48 h-48 bg-white/5 rounded-lg overflow-hidden ${index === 1 ? 'md:ml-auto' : ''}`}>
+                <img
+                  src={edu.image}
+                  alt={edu.school}
+                  className="w-full h-full object-contain p-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-red-500/20"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.onerror = null;
+                    target.src = '/fallback.png';
+                    console.log(`Failed to load image: ${edu.image}`);
+                  }}
+                />
+              </div>
+              {/* Add a subtle glow effect */}
+              <div className="absolute inset-0 -z-10 bg-red-500/10 blur-xl rounded-full transform scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            
+            <h3 className="text-2xl font-semibold text-red-400 mb-3">{edu.degree}</h3>
+            <p className="text-xl text-gray-300 mb-2">{edu.field}</p>
+            <p className="text-lg text-gray-400 mb-2">{edu.school}</p>
+            <p className="text-base text-gray-500 mb-6">{edu.period}</p>
+            <ul className={`space-y-3 ${index === 1 ? 'list-none' : 'list-disc list-inside'}`}>
               {edu.achievements.map((achievement, i) => (
-                <li key={i} className="text-gray-300">{achievement}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const Leadership = () => (
-  <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-4xl mx-auto mt-20">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
-        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-          Leadership
-        </span>
-      </h2>
-      <div className="space-y-6">
-        {[
-          {
-            position: "Technical Lead",
-            organization: "Organization Name",
-            period: "2023 - Present",
-            responsibilities: [
-              "Led a team of X developers",
-              "Managed project deliverables",
-              "Mentored junior developers"
-            ]
-          },
-          // Add more leadership experiences
-        ].map((role, index) => (
-          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-red-400">{role.position}</h3>
-            <p className="text-gray-400">{role.organization}</p>
-            <p className="text-sm text-gray-500 mb-4">{role.period}</p>
-            <ul className="list-disc list-inside space-y-2">
-              {role.responsibilities.map((resp, i) => (
-                <li key={i} className="text-gray-300">{resp}</li>
+                <li key={i} className="text-gray-300 text-lg">{achievement}</li>
               ))}
             </ul>
           </div>
@@ -282,11 +221,19 @@ const ExtraCurricular = () => (
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-          Extra-Curricular Activities
+          Extra-Curricular Activities & Leadership
         </span>
       </h2>
       <div className="space-y-6">
         {[
+          {
+            activity: "Technical Lead - GDSC KIIT",
+            details: [
+              "Led a team of 10+ developers in various technical projects",
+              "Organized and conducted technical workshops",
+              "Mentored junior developers in web development"
+            ]
+          },
           {
             activity: "Competitive Programming",
             details: [
@@ -294,8 +241,8 @@ const ExtraCurricular = () => (
               "Ranked ABC in contest",
               "Solved N+ problems"
             ]
-          },
-          // Add more activities
+          }
+          // Add more activities as needed
         ].map((activity, index) => (
           <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
             <h3 className="text-xl font-semibold text-red-400 mb-4">{activity.activity}</h3>
@@ -411,26 +358,20 @@ function App() {
                   <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Home
                   </Link>
-                  <Link to="/about" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
-                    About
-                  </Link>
-                  <Link to="/skills" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
-                    Skills
-                  </Link>
                   <Link to="/education" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Education
+                  </Link>
+                  <Link to="/projects" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Projects
                   </Link>
                   <Link to="/experience" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Experience
                   </Link>
-                  <Link to="/leadership" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
-                    Leadership
+                  <Link to="/skills" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Skills
                   </Link>
                   <Link to="/extra-curricular" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Extra-Curricular
-                  </Link>
-                  <Link to="/projects" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
-                    Projects
                   </Link>
                 </div>
               </div>
@@ -459,25 +400,18 @@ function App() {
                   Home
                 </Link>
                 <Link
-                  to="/about"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link
-                  to="/skills"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Skills
-                </Link>
-                <Link
                   to="/education"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Education
+                </Link>
+                <Link
+                  to="/projects"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Projects
                 </Link>
                 <Link
                   to="/experience"
@@ -487,11 +421,11 @@ function App() {
                   Experience
                 </Link>
                 <Link
-                  to="/leadership"
+                  to="/skills"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Leadership
+                  Skills
                 </Link>
                 <Link
                   to="/extra-curricular"
@@ -499,13 +433,6 @@ function App() {
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Extra-Curricular
-                </Link>
-                <Link
-                  to="/projects"
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Projects
                 </Link>
               </div>
             </div>
@@ -515,11 +442,9 @@ function App() {
         {/* Routes */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/education" element={<Education />} />
           <Route path="/experience" element={<Experience />} />
-          <Route path="/leadership" element={<Leadership />} />
           <Route path="/extra-curricular" element={<ExtraCurricular />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
