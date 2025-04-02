@@ -55,50 +55,87 @@ const Experience = () => (
   </div>
 );
 
-const Projects = () => (
-  <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-4xl mx-auto mt-20">
-      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
-        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-          Projects
-        </span>
-      </h2>
-      <div className="grid grid-cols-1 gap-6">
-        {[
-          {
-            title: 'EquiHealth',
-            description: 'A real-time healthcare platform enabling instant doctor consultations, live health tracking, and AI-driven health insights. Built with a scalable backend (Hono.js, Cloudflare Workers, Flask) and an engaging frontend (React.js, Tailwind CSS, Framer Motion), it enhances user experience and retention. Integrated AI models provide predictive health analytics and personalized patient insights with high accuracy.',
-            video: '/EquiHealth.mp4'
-          }
-        ].map((project, index) => (
-          <div
-            key={index}
-            className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-transform hover:-translate-y-1"
-          >
-            <div className="relative w-full h-[400px]">
-              <video
-                className="w-full h-full object-contain bg-black/50"
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                onError={(e) => console.error("Video loading error:", e)}
+const Projects = () => {
+  const [isPlaying, setIsPlaying] = React.useState(true);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-transparent p-8">
+      <div className="max-w-4xl mx-auto mt-20">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+          <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+            Projects
+          </span>
+        </h2>
+        <div className="grid grid-cols-1 gap-6">
+          {[
+            {
+              title: 'EquiHealth',
+              description: 'A real-time healthcare platform enabling instant doctor consultations, live health tracking, and AI-driven health insights. Built with a scalable backend (Hono.js, Cloudflare Workers, Flask) and an engaging frontend (React.js, Tailwind CSS, Framer Motion), it enhances user experience and retention. Integrated AI models provide predictive health analytics and personalized patient insights with high accuracy.',
+              video: '/EquiHealth.mp4',
+              github: 'https://github.com/banerjeesoumya/misFITs'
+            }
+          ].map((project, index) => (
+            <div
+              key={index}
+              className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-transform hover:-translate-y-1"
+            >
+              <div 
+                className="relative w-full h-[400px] cursor-pointer"
+                onClick={togglePlay}
               >
-                <source src={project.video} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-contain bg-black/50"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  onError={(e) => console.error("Video loading error:", e)}
+                >
+                  <source src={project.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {/* Play/Pause Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <div className="text-white text-6xl">
+                    {isPlaying ? '⏸' : '⏵'}
+                  </div>
+                </div>
+              </div>
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="text-xl font-semibold text-red-400">{project.title}</h3>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/40 rounded-full transition-all duration-300 hover:scale-105"
+                  >
+                    <Github size={20} />
+                    <span>View on GitHub</span>
+                  </a>
+                </div>
+                <p className="text-gray-300 text-sm leading-relaxed">{project.description}</p>
+              </div>
             </div>
-            <div className="p-6">
-              <h3 className="text-xl font-semibold mb-2 text-red-400">{project.title}</h3>
-              <p className="text-gray-300 text-sm leading-relaxed">{project.description}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Skills = () => (
   <div className="min-h-screen bg-transparent p-8">
@@ -112,19 +149,27 @@ const Skills = () => (
         {[
           {
             category: "Programming Languages",
-            skills: ["Python", "JavaScript", "Java", "C", "C++"]
+            skills: ["Python", "JavaScript", "Java", "C"]
           },
           {
             category: "Web Technologies",
-            skills: ["React.js", "Node.js", "HTML5", "CSS3", "TypeScript"]
+            skills: ["React.js", "Node.js", "Next.js", "HTML", "CSS", "TypeScript"]
           },
           {
-            category: "Tools & Frameworks",
-            skills: ["Git", "Docker", "AWS", "MongoDB", "PostgreSQL"]
+            category: "Liberaries & Frameworks",
+            skills: [ "TenserFlow", "PyTorch","Scikit-learn","Flask"]
           },
           {
-            category: "Other Skills",
-            skills: ["Problem Solving", "Team Leadership", "Agile Development", "System Design"]
+            category: "Database Management",
+            skills: ["MySQL", "PostgreSQL", "MongoDB"]
+          },
+          {
+            category: "Version Control",
+            skills: ["Git", "GitHub", "GitLab"]
+          },
+          {
+            category: "Soft Skills",
+            skills: ["Teamwork","Critical Thinking","Problem Solving", " Leadership"]
           }
         ].map((category, index) => (
           <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
@@ -221,25 +266,33 @@ const ExtraCurricular = () => (
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-          Extra-Curricular Activities & Leadership
+           Leadership Roles
         </span>
       </h2>
       <div className="space-y-6">
         {[
           {
-            activity: "Technical Lead - GDSC KIIT",
+            activity: "PR & Outreach Head (Core Team) - GeeksForGeeks KIIT Chapter",
             details: [
-              "Led a team of 10+ developers in various technical projects",
-              "Organized and conducted technical workshops",
-              "Mentored junior developers in web development"
+              "Spearheaded public relations and outreach effortsnd.",
+              "Increased chapter membership by 65%.",
+              "Organised 4+ events under my tenure."
             ]
           },
           {
-            activity: "Competitive Programming",
+            activity: "Founding/Advisory Board Member - CyberVault (Cyber Security Club)",
             details: [
-              "Participated in XYZ competitions",
-              "Ranked ABC in contest",
-              "Solved N+ problems"
+              "Played a key role in establishing the 1st ever cybersecurity society in KIIT.",
+              "Advised on strategic initiatives and provided guidance."
+              
+            ]
+          },
+          {
+            activity: "Marketing Lead - Konnexion (IT & Web Club)",
+            details: [
+              "Led marketing initiatives to promote the society’s events and workshops.",
+              "Increased follower engagement by 40%.",
+              "Organized 3+ events and workshops."
             ]
           }
           // Add more activities as needed
