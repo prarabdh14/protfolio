@@ -54,17 +54,27 @@ const Experience = () => (
       </h2>
       <div className="space-y-8">
         {[
+         
           {
-            title: 'Senior Full Stack Developer',
-            company: 'Tech Corp',
-            period: '2020 - Present',
-            description: 'Led development of multiple web applications using React and Node.js.'
+            title: 'Prompt Verse',
+            company: 'Prompt Engineering Competition',
+            period: 'November 2024',
+            description: 'Designed over 50 tailored prompts resulting in improved task completion times by approximately 30%, improving overall team engagement in creative brainstorming activities by an impressive 40%.',
+            description2: 'Bagged position in Top 10 amongst 500+ candidates.'
           },
           {
-            title: 'Full Stack Developer',
-            company: 'StartUp Inc',
-            period: '2018 - 2020',
-            description: 'Developed and maintained various web applications.'
+            title: 'TCS NQT',
+            company: 'Examination',
+            period: 'November 2024',
+            description: 'Scored 100% in Hands-On Coding Assessment 98% in Reasoning, 80% in Advance Quantative Reasoning, 65% in Numerical and 64% in Verbal.',
+            description2: 'Achieved an overall score of 81.39%.'
+          },
+          {
+            title: 'Providence Leap Ideathon',
+            company: 'Ideathon',
+            period: 'October 2024',
+            description: 'Developed a technical solution to address the challenge of providing equitable healthcare to all strata of society in collaboration with a team of 4.',
+            description2: 'Stood out as a Semi-Finalist i.e. in the top 20% of 5500+ participants.'
           }
         ].map((job, index) => (
           <div
@@ -74,7 +84,10 @@ const Experience = () => (
             <h3 className="text-xl font-semibold mb-2 text-red-400">{job.title}</h3>
             <p className="text-gray-400 mb-2">{job.company}</p>
             <p className="text-sm text-gray-500 mb-4">{job.period}</p>
-            <p className="text-gray-300">{job.description}</p>
+            <p className="text-gray-300 mb-2">{job.description}</p>
+            {job.description2 && (
+              <p className="text-gray-300">{job.description2}</p>
+            )}
           </div>
         ))}
       </div>
@@ -84,42 +97,41 @@ const Experience = () => (
 
 const Projects = () => (
   <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-6xl mx-auto mt-20">
+    <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
           Projects
         </span>
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {[
           {
-            title: 'E-commerce Platform',
-            description: 'A full-featured e-commerce platform built with React and Node.js.',
-            image: 'https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=200&q=80'
-          },
-          {
-            title: 'Task Management App',
-            description: 'A collaborative task management application with real-time updates.',
-            image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=200&q=80'
-          },
-          {
-            title: 'Social Media Dashboard',
-            description: 'A dashboard for managing multiple social media accounts.',
-            image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=200&q=80'
+            title: 'EquiHealth',
+            description: 'A real-time healthcare platform enabling instant doctor consultations, live health tracking, and AI-driven health insights. Built with a scalable backend (Hono.js, Cloudflare Workers, Flask) and an engaging frontend (React.js, Tailwind CSS, Framer Motion), it enhances user experience and retention. Integrated AI models provide predictive health analytics and personalized patient insights with high accuracy.',
+            video: '/EquiHealth.mp4'
           }
         ].map((project, index) => (
           <div
             key={index}
             className="bg-black/30 backdrop-blur-sm rounded-lg overflow-hidden transition-transform hover:-translate-y-1"
           >
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-48 object-cover"
-            />
+            <div className="relative w-full h-[400px]">
+              <video
+                className="w-full h-full object-contain bg-black/50"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                onError={(e) => console.error("Video loading error:", e)}
+              >
+                <source src={project.video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold mb-2 text-red-400">{project.title}</h3>
-              <p className="text-gray-300">{project.description}</p>
+              <p className="text-gray-300 text-sm leading-relaxed">{project.description}</p>
             </div>
           </div>
         ))}
@@ -176,33 +188,46 @@ const Skills = () => (
 
 const Education = () => (
   <div className="min-h-screen bg-transparent p-8">
-    <div className="max-w-4xl mx-auto mt-20">
+    <div className="max-w-6xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
           Education
         </span>
       </h2>
-      <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[
           {
             degree: "Bachelor of Technology",
-            field: "Computer Science",
-            school: "Your University Name",
+            field: "Computer Science and Engineering",
+            school: "Vellore Institute of Technology, Bhopal",
             period: "2020 - 2024",
             achievements: [
-              "CGPA: X.XX/10",
+              "CGPA: 8.71/10",
               "Member of Computer Science Society",
-              "Won XYZ Hackathon"
+              "Participated in various hackathons and coding competitions"
             ]
           },
-          // Add more education entries if needed
+          {
+            degree: "Higher Secondary (12th)",
+            field: "Science with Computer Science",
+            school: "Kendriya Vidyalaya No.1, Bhopal",
+            period: "2019 - 2020",
+            achievements: [
+              "Percentage: 89.6%",
+              "School Head Boy",
+              "Active participant in cultural activities"
+            ]
+          }
         ].map((edu, index) => (
-          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
+          <div 
+            key={index} 
+            className={`bg-black/30 backdrop-blur-sm rounded-lg p-6 ${index === 1 ? 'md:text-right' : ''}`}
+          >
             <h3 className="text-xl font-semibold text-red-400">{edu.degree}</h3>
             <p className="text-lg text-gray-300">{edu.field}</p>
             <p className="text-gray-400">{edu.school}</p>
             <p className="text-sm text-gray-500 mb-4">{edu.period}</p>
-            <ul className="list-disc list-inside space-y-2">
+            <ul className={`space-y-2 ${index === 1 ? 'list-none' : 'list-disc list-inside'}`}>
               {edu.achievements.map((achievement, i) => (
                 <li key={i} className="text-gray-300">{achievement}</li>
               ))}
