@@ -128,11 +128,178 @@ const Projects = () => (
   </div>
 );
 
+const Skills = () => (
+  <div className="min-h-screen bg-transparent p-8">
+    <div className="max-w-4xl mx-auto mt-20">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+          Skills
+        </span>
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {[
+          {
+            category: "Programming Languages",
+            skills: ["Python", "JavaScript", "Java", "C", "C++"]
+          },
+          {
+            category: "Web Technologies",
+            skills: ["React.js", "Node.js", "HTML5", "CSS3", "TypeScript"]
+          },
+          {
+            category: "Tools & Frameworks",
+            skills: ["Git", "Docker", "AWS", "MongoDB", "PostgreSQL"]
+          },
+          {
+            category: "Other Skills",
+            skills: ["Problem Solving", "Team Leadership", "Agile Development", "System Design"]
+          }
+        ].map((category, index) => (
+          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
+            <h3 className="text-xl font-semibold mb-4 text-red-400">{category.category}</h3>
+            <div className="flex flex-wrap gap-2">
+              {category.skills.map((skill, skillIndex) => (
+                <span
+                  key={skillIndex}
+                  className="bg-red-500/20 px-3 py-1 rounded-full text-sm"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const Education = () => (
+  <div className="min-h-screen bg-transparent p-8">
+    <div className="max-w-4xl mx-auto mt-20">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+          Education
+        </span>
+      </h2>
+      <div className="space-y-6">
+        {[
+          {
+            degree: "Bachelor of Technology",
+            field: "Computer Science",
+            school: "Your University Name",
+            period: "2020 - 2024",
+            achievements: [
+              "CGPA: X.XX/10",
+              "Member of Computer Science Society",
+              "Won XYZ Hackathon"
+            ]
+          },
+          // Add more education entries if needed
+        ].map((edu, index) => (
+          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-red-400">{edu.degree}</h3>
+            <p className="text-lg text-gray-300">{edu.field}</p>
+            <p className="text-gray-400">{edu.school}</p>
+            <p className="text-sm text-gray-500 mb-4">{edu.period}</p>
+            <ul className="list-disc list-inside space-y-2">
+              {edu.achievements.map((achievement, i) => (
+                <li key={i} className="text-gray-300">{achievement}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const Leadership = () => (
+  <div className="min-h-screen bg-transparent p-8">
+    <div className="max-w-4xl mx-auto mt-20">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+          Leadership
+        </span>
+      </h2>
+      <div className="space-y-6">
+        {[
+          {
+            position: "Technical Lead",
+            organization: "Organization Name",
+            period: "2023 - Present",
+            responsibilities: [
+              "Led a team of X developers",
+              "Managed project deliverables",
+              "Mentored junior developers"
+            ]
+          },
+          // Add more leadership experiences
+        ].map((role, index) => (
+          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-red-400">{role.position}</h3>
+            <p className="text-gray-400">{role.organization}</p>
+            <p className="text-sm text-gray-500 mb-4">{role.period}</p>
+            <ul className="list-disc list-inside space-y-2">
+              {role.responsibilities.map((resp, i) => (
+                <li key={i} className="text-gray-300">{resp}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const ExtraCurricular = () => (
+  <div className="min-h-screen bg-transparent p-8">
+    <div className="max-w-4xl mx-auto mt-20">
+      <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+        <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+          Extra-Curricular Activities
+        </span>
+      </h2>
+      <div className="space-y-6">
+        {[
+          {
+            activity: "Competitive Programming",
+            details: [
+              "Participated in XYZ competitions",
+              "Ranked ABC in contest",
+              "Solved N+ problems"
+            ]
+          },
+          // Add more activities
+        ].map((activity, index) => (
+          <div key={index} className="bg-black/30 backdrop-blur-sm rounded-lg p-6">
+            <h3 className="text-xl font-semibold text-red-400 mb-4">{activity.activity}</h3>
+            <ul className="list-disc list-inside space-y-2">
+              {activity.details.map((detail, i) => (
+                <li key={i} className="text-gray-300">{detail}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
 // Home Page Component
 const Home = () => (
   <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-black/30">
     <div className="max-w-7xl mx-auto text-center">
-      <div className="space-y-12">
+      <div className="space-y-12 mt-24">
+        {/* Name and Title with Animation */}
+        <div className="space-y-6 animate-fadeIn">
+          <h1 className="text-4xl sm:text-6xl font-bold">
+            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+              Hi, I'm Prarabdh Atrey!
+            </span>
+          </h1>
+        </div>
+
         {/* Profile Image with Animation */}
         <div className="relative inline-block group">
           <img
@@ -142,19 +309,16 @@ const Home = () => (
           />
         </div>
 
-        {/* Name and Title with Animation */}
+        {/* Title and Description */}
         <div className="space-y-6 animate-fadeIn">
-          <h1 className="text-4xl sm:text-6xl font-bold">
-            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-              Prarabdh Atrey
-            </span>
-          </h1>
-          <p className="text-xl sm:text-2xl text-gray-300">
+          <p className="text-xl sm:text-4xl text-gray-300">
             Software Developer
           </p>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Passionate Full Stack Developer with expertise in building modern web applications.
-            Specialized in React, Node.js, and cloud technologies.
+          <p className="text-gray-300 max-w-4.5xl mx-auto text-lg">
+            I'm a tech enthusiast passionate about AI, full-stack development and playing wiht new technologies.<br></br> 
+            I love solving complex problems through code, whether it's building intelligent systems or creating innovative solutions.<br></br> 
+            With a strong foundation in Python, JavaScript, C, and Java, I enjoy turning ideas into reality.<br></br>
+            Always eager to learn, build, and push boundaries! 
           </p>
         </div>
 
@@ -181,22 +345,6 @@ const Home = () => (
           >
             <Mail size={28} />
           </a>
-        </div>
-
-        {/* Call to Action */}
-        <div className="flex justify-center space-x-4 mt-8">
-          <Link
-            to="/projects"
-            className="px-6 py-3 bg-red-500/20 hover:bg-red-500/40 rounded-full text-white font-medium transition-all duration-300 hover:scale-105"
-          >
-            View Projects
-          </Link>
-          <Link
-            to="/about"
-            className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-white font-medium transition-all duration-300 hover:scale-105"
-          >
-            About Me
-          </Link>
         </div>
       </div>
     </div>
@@ -228,7 +376,7 @@ function App() {
             <div className="flex items-center justify-between h-16">
               <div className="flex-shrink-0">
                 <Link to="/" className="text-xl font-bold bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-                  Portfolio
+                  Prarabdh Atrey
                 </Link>
               </div>
               
@@ -241,8 +389,20 @@ function App() {
                   <Link to="/about" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     About
                   </Link>
+                  <Link to="/skills" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Skills
+                  </Link>
+                  <Link to="/education" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Education
+                  </Link>
                   <Link to="/experience" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Experience
+                  </Link>
+                  <Link to="/leadership" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Leadership
+                  </Link>
+                  <Link to="/extra-curricular" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Extra-Curricular
                   </Link>
                   <Link to="/projects" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     Projects
@@ -281,11 +441,39 @@ function App() {
                   About
                 </Link>
                 <Link
+                  to="/skills"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Skills
+                </Link>
+                <Link
+                  to="/education"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Education
+                </Link>
+                <Link
                   to="/experience"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Experience
+                </Link>
+                <Link
+                  to="/leadership"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Leadership
+                </Link>
+                <Link
+                  to="/extra-curricular"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Extra-Curricular
                 </Link>
                 <Link
                   to="/projects"
@@ -303,7 +491,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/education" element={<Education />} />
           <Route path="/experience" element={<Experience />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/extra-curricular" element={<ExtraCurricular />} />
           <Route path="/projects" element={<Projects />} />
         </Routes>
       </div>
