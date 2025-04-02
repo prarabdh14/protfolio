@@ -161,21 +161,21 @@ const Home = () => (
         {/* Social Links with Hover Effects */}
         <div className="flex justify-center space-x-6">
           <a 
-            href="#" 
+            href="https://github.com/prarabdh14" 
             className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
             aria-label="GitHub"
           >
             <Github size={28} />
           </a>
           <a 
-            href="#" 
+            href="https://www.linkedin.com/in/prarabdh-atrey-498ab9255/" 
             className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
             aria-label="LinkedIn"
           >
             <Linkedin size={28} />
           </a>
           <a 
-            href="#" 
+            href="mailto:prarabdhatrey@gmail.com" 
             className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
             aria-label="Email"
           >
