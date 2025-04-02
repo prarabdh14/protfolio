@@ -5,7 +5,7 @@ import ParticleBackground from './components/ParticleBackground';
 
 // Pages
 const About = () => (
-  <div className="min-h-screen bg-black p-8">
+  <div className="min-h-screen bg-transparent p-8">
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -22,7 +22,7 @@ const About = () => (
             <h3 className="text-xl font-semibold mb-4 text-red-400">Skills</h3>
             <div className="space-y-2">
               {['React', 'Node.js', 'TypeScript', 'Python', 'AWS'].map(skill => (
-                <div key={skill} className="bg-red-500/20 rounded-full px-4 py-2">
+                <div key={skill} className="bg-red-500/20 backdrop-blur-sm rounded-full px-4 py-2">
                   {skill}
                 </div>
               ))}
@@ -45,7 +45,7 @@ const About = () => (
 );
 
 const Experience = () => (
-  <div className="min-h-screen bg-black p-8">
+  <div className="min-h-screen bg-transparent p-8">
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -83,7 +83,7 @@ const Experience = () => (
 );
 
 const Projects = () => (
-  <div className="min-h-screen bg-black p-8">
+  <div className="min-h-screen bg-transparent p-8">
     <div className="max-w-6xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -136,22 +136,21 @@ const Home = () => (
         {/* Profile Image with Animation */}
         <div className="relative inline-block group">
           <img
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200&q=80"
+            src="/profile.png"
             alt="Profile"
-            className="w-48 h-48 sm:w-56 sm:h-56 rounded-full mx-auto border-4 border-red-500 shadow-lg transition-transform duration-500 group-hover:scale-105"
+            className="w-48 h-48 sm:w-56 sm:h-56 rounded-full mx-auto border-4 border-red-500 shadow-lg transition-transform duration-500 group-hover:scale-105 object-cover"
           />
-          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-white opacity-20 animate-pulse"></div>
         </div>
 
         {/* Name and Title with Animation */}
         <div className="space-y-6 animate-fadeIn">
           <h1 className="text-4xl sm:text-6xl font-bold">
             <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-              John Doe
+              Prarabdh Atrey
             </span>
           </h1>
           <p className="text-xl sm:text-2xl text-gray-300">
-            Full Stack Developer
+            Software Developer
           </p>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
             Passionate Full Stack Developer with expertise in building modern web applications.
@@ -236,6 +235,9 @@ function App() {
               {/* Desktop Navigation */}
               <div className="hidden md:block">
                 <div className="ml-10 flex items-center space-x-4">
+                  <Link to="/" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
+                    Home
+                  </Link>
                   <Link to="/about" className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-red-500/20 hover:text-white transition-colors">
                     About
                   </Link>
@@ -264,6 +266,13 @@ function App() {
           {isMenuOpen && (
             <div className="md:hidden">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/30 backdrop-blur-sm">
+                <Link
+                  to="/"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Link>
                 <Link
                   to="/about"
                   className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-red-500/20 hover:text-white"
