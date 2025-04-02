@@ -1,10 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import ParticleBackground from './components/ParticleBackground';
 
 // Pages
 const About = () => (
-  <div className="min-h-screen bg-gradient-to-br from-black via-red-900 to-gray-900 p-8">
+  <div className="min-h-screen bg-black p-8">
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -44,7 +45,7 @@ const About = () => (
 );
 
 const Experience = () => (
-  <div className="min-h-screen bg-gradient-to-br from-black via-red-900 to-gray-900 p-8">
+  <div className="min-h-screen bg-black p-8">
     <div className="max-w-4xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -82,7 +83,7 @@ const Experience = () => (
 );
 
 const Projects = () => (
-  <div className="min-h-screen bg-gradient-to-br from-black via-red-900 to-gray-900 p-8">
+  <div className="min-h-screen bg-black p-8">
     <div className="max-w-6xl mx-auto mt-20">
       <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
         <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
@@ -127,13 +128,102 @@ const Projects = () => (
   </div>
 );
 
+// Home Page Component
+const Home = () => (
+  <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-black/30">
+    <div className="max-w-7xl mx-auto text-center">
+      <div className="space-y-12">
+        {/* Profile Image with Animation */}
+        <div className="relative inline-block group">
+          <img
+            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200&q=80"
+            alt="Profile"
+            className="w-48 h-48 sm:w-56 sm:h-56 rounded-full mx-auto border-4 border-red-500 shadow-lg transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-white opacity-20 animate-pulse"></div>
+        </div>
+
+        {/* Name and Title with Animation */}
+        <div className="space-y-6 animate-fadeIn">
+          <h1 className="text-4xl sm:text-6xl font-bold">
+            <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+              John Doe
+            </span>
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-300">
+            Full Stack Developer
+          </p>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
+            Passionate Full Stack Developer with expertise in building modern web applications.
+            Specialized in React, Node.js, and cloud technologies.
+          </p>
+        </div>
+
+        {/* Social Links with Hover Effects */}
+        <div className="flex justify-center space-x-6">
+          <a 
+            href="#" 
+            className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
+            aria-label="GitHub"
+          >
+            <Github size={28} />
+          </a>
+          <a 
+            href="#" 
+            className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={28} />
+          </a>
+          <a 
+            href="#" 
+            className="p-3 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-all duration-300 hover:scale-110"
+            aria-label="Email"
+          >
+            <Mail size={28} />
+          </a>
+        </div>
+
+        {/* Call to Action */}
+        <div className="flex justify-center space-x-4 mt-8">
+          <Link
+            to="/projects"
+            className="px-6 py-3 bg-red-500/20 hover:bg-red-500/40 rounded-full text-white font-medium transition-all duration-300 hover:scale-105"
+          >
+            View Projects
+          </Link>
+          <Link
+            to="/about"
+            className="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full text-white font-medium transition-all duration-300 hover:scale-105"
+          >
+            About Me
+          </Link>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const createParticles = () => {
+    const particleCount = Math.min(window.innerWidth / 10, 150);
+    console.log(`Creating ${particleCount} particles`);
+    for (let i = 0; i < particleCount; i++) {
+      // Particle creation logic...
+    }
+  };
+
+  const animate = () => {
+    console.log("Animating particles");
+    // Animation logic...
+  };
+
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-black via-red-900 to-gray-900 text-white">
-        {/* Navigation */}
+      <ParticleBackground />
+      <div className="relative min-h-screen bg-transparent text-white">
         <nav className="fixed w-full bg-black/50 backdrop-blur-sm z-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between h-16">
@@ -202,44 +292,7 @@ function App() {
 
         {/* Routes */}
         <Routes>
-          <Route path="/" element={
-            <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-              <div className="max-w-7xl mx-auto text-center">
-                <div className="relative inline-block">
-                  <img
-                    src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&h=200&q=80"
-                    alt="Profile"
-                    className="w-32 h-32 rounded-full mx-auto mb-8 border-4 border-red-500"
-                  />
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-red-500 to-white opacity-20 animate-pulse"></div>
-                </div>
-                
-                <h1 className="text-4xl sm:text-6xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
-                    John Doe
-                  </span>
-                </h1>
-                <p className="text-xl sm:text-2xl text-gray-300 mb-8">
-                  Full Stack Developer
-                </p>
-                <p className="text-gray-300 max-w-2xl mx-auto mb-12">
-                  Passionate Full Stack Developer with expertise in building modern web applications.
-                  Specialized in React, Node.js, and cloud technologies.
-                </p>
-                <div className="flex justify-center space-x-4">
-                  <a href="#" className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
-                    <Github size={24} />
-                  </a>
-                  <a href="#" className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
-                    <Linkedin size={24} />
-                  </a>
-                  <a href="#" className="p-2 rounded-full bg-red-500/20 hover:bg-red-500/40 transition-colors">
-                    <Mail size={24} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          } />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/experience" element={<Experience />} />
           <Route path="/projects" element={<Projects />} />
